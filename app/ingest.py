@@ -1,15 +1,21 @@
 """PDF를 읽어 문단 단위 청크로 나눈다.
 
 규칙
-- 문단 1개 = 청크 1개. 문단끼리 겹치게 자르지 않고(overlap 없음), 페이지를 넘지 않는다.
+- 문단 1개 = 청크 1개. 페이지를 넘지 않는다.
+- overlap: 같은 페이지 앞 문단의 마지막 1문장을 검색용 글(search_text)에 함께 넣는다.
+  답변 근거로 보여 주는 원문(text)에는 넣지 않아 인용은 그 문단 그대로 남는다.
 - 페이지 맨 위 머리말(`FB01 | 부서`)과 맨 아래 쪽번호(`n / 24`)는 뺀다.
 - 검색에 쓰는 글(search_text)에만 "문서 제목 > 소제목"을 앞에 붙인다.
 """
+import re
 from pathlib import Path
 
 from pypdf import PdfReader
 
 from app.config import DOC_DIR
+
+# 문장 끝: 마침표 · 물음표 · 느낌표 뒤 (닫는 따옴표가 있으면 그 뒤). "3.5"처럼 뒤에 숫자가 오면 자르지 않는다.
+SENTENCE_END = re.compile(r'(?<=[.?!][”"])\s*|(?<=[.?!])(?![”"\d])\s*')
 
 
 def split_paragraphs(page_text: str) -> list[str]:
@@ -29,10 +35,16 @@ def split_paragraphs(page_text: str) -> list[str]:
     return paragraphs
 
 
+def last_sentence(paragraph: str) -> str:
+    """문단의 마지막 문장 ("가다. 나다. 다다." → "다다.")."""
+    return [s for s in SENTENCE_END.split(paragraph) if s.strip()][-1]
+
+
 def load_chunks(doc_dir: Path = DOC_DIR) -> list[dict]:
     """모든 PDF를 청크 목록으로 만든다.
 
-    청크 예: {"chunk_id": "FB01-p2-c1", "book_id": "FB01", "page": 2, "text": 원문, "search_text": 제목 + 원문, ...}
+    청크 예: {"chunk_id": "FB01-p2-c2", "book_id": "FB01", "page": 2, "text": 원문,
+             "search_text": 제목 + 앞 문단 마지막 문장 + 원문, ...}
     """
     chunks = []
     for pdf in sorted(doc_dir.glob("*.pdf")):
@@ -43,6 +55,8 @@ def load_chunks(doc_dir: Path = DOC_DIR) -> list[dict]:
                 raise ValueError(f"{pdf.name} {page_no}쪽의 모양이 예상과 다릅니다 (덩어리 {len(parts)}개)")
             _header, title, heading, *body, _page_number = parts
             for n, text in enumerate(body, start=1):
+                # 페이지 첫 문단은 같은 페이지에 앞 문단이 없어 겹칠 문장이 없다
+                overlap = last_sentence(body[n - 2]) + " " if n > 1 else ""
                 chunks.append({
                     "chunk_id": f"{pdf.stem}-p{page_no}-c{n}",
                     "book_id": pdf.stem,
@@ -51,6 +65,6 @@ def load_chunks(doc_dir: Path = DOC_DIR) -> list[dict]:
                     "title": title,
                     "heading": heading,
                     "text": text,
-                    "search_text": f"{title} > {heading}\n{text}",
+                    "search_text": f"{title} > {heading}\n{overlap}{text}",
                 })
     return chunks
