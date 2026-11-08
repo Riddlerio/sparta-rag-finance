@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "1. 색인 만들기 (app.index)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "app.index",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "2. API 서버 (uvicorn)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["app.main:app"],
+      "cwd": "${workspaceFolder}",
+      "jinja": true
+    },
+    {
+      "name": "3. 검색 3방식 비교 (서버를 끄고)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "eval.compare_modes",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "4. 핵심 규칙 점검",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "tests.check_core",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

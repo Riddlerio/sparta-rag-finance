@@ -1,0 +1,18 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# secrets
+.env
+
+# original zip extracts (merged copy lives in data/)
+_download/
+
+# index (rebuild with: python -m app.index)
+index/
+
+# AI assistant tooling (not part of the project)
+.claude/
+.agents/

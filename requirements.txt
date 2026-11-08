@@ -1,0 +1,24 @@
+# 웹 API
+fastapi
+uvicorn
+# PDF 글 추출
+pypdf
+# 임베딩(E5) · 리랭커(cross-encoder)
+sentence-transformers
+# 벡터 저장 (로컬 폴더 모드)
+qdrant-client
+# 키워드 검색 BM25 + 한국어 형태소 분석
+rank-bm25
+kiwipiepy
+# 체인 (gpt-6-luna는 OpenAI API로 호출)
+langchain-core
+langchain-openai
+# 실행 기록
+langfuse
+# .env 읽기
+python-dotenv
+# 토큰 수 어림 (o200k)
+tiktoken
+# 평가: RAGAS 0.4.3은 langchain-community 0.4와 맞지 않아 0.3대로 고정
+ragas
+langchain-community<0.4

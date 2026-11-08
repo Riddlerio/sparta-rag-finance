@@ -1,0 +1,10 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+  "files.exclude": {
+    "_download": true
+  },
+  "search.exclude": {
+    "_download": true,
+    ".venv": true
+  }
+}

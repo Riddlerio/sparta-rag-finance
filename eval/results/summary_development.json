@@ -1,0 +1,183 @@
+{
+ "split": "development",
+ "k": 10,
+ "model": "gpt-6-luna",
+ "modes": {
+  "naive": {
+   "questions": 30,
+   "status": {
+    "answered": 19,
+    "needs_clarification": 2,
+    "abstained": 9,
+    "error": 0
+   },
+   "hit_at_k": 0.929,
+   "recall_at_k": 0.833,
+   "retrieval_n": 28,
+   "retrieval_na": 2,
+   "faithfulness": {
+    "mean": 0.955,
+    "n": 28,
+    "na": 1,
+    "unavailable": 1
+   },
+   "ops": {
+    "ok_requests": 30,
+    "avg_response_ms": 3347,
+    "failed_requests": 0,
+    "failed_response_ms": [],
+    "error_rate_pct": 0.0,
+    "input_tokens": 53904,
+    "output_tokens": 7348,
+    "usage_counted_requests": 30
+   },
+   "judge_fact": {
+    "mean": 0.667,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   },
+   "judge_condition": {
+    "mean": 1,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   },
+   "judge_evidence": {
+    "mean": 0.867,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   },
+   "judge_judgment": {
+    "mean": 0.967,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   }
+  },
+  "hybrid": {
+   "questions": 30,
+   "status": {
+    "answered": 22,
+    "needs_clarification": 1,
+    "abstained": 7,
+    "error": 0
+   },
+   "hit_at_k": 0.964,
+   "recall_at_k": 0.878,
+   "retrieval_n": 28,
+   "retrieval_na": 2,
+   "faithfulness": {
+    "mean": 0.949,
+    "n": 29,
+    "na": 0,
+    "unavailable": 1
+   },
+   "ops": {
+    "ok_requests": 30,
+    "avg_response_ms": 3214,
+    "failed_requests": 0,
+    "failed_response_ms": [],
+    "error_rate_pct": 0.0,
+    "input_tokens": 53907,
+    "output_tokens": 7423,
+    "usage_counted_requests": 30
+   },
+   "judge_fact": {
+    "mean": 0.7,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   },
+   "judge_condition": {
+    "mean": 0.933,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   },
+   "judge_evidence": {
+    "mean": 0.9,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   },
+   "judge_judgment": {
+    "mean": 0.9,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   }
+  },
+  "hybrid_rerank": {
+   "questions": 30,
+   "status": {
+    "answered": 21,
+    "needs_clarification": 2,
+    "abstained": 7,
+    "error": 0
+   },
+   "hit_at_k": 0.929,
+   "recall_at_k": 0.86,
+   "retrieval_n": 28,
+   "retrieval_na": 2,
+   "faithfulness": {
+    "mean": 0.967,
+    "n": 29,
+    "na": 0,
+    "unavailable": 1
+   },
+   "ops": {
+    "ok_requests": 30,
+    "avg_response_ms": 8821,
+    "failed_requests": 0,
+    "failed_response_ms": [],
+    "error_rate_pct": 0.0,
+    "input_tokens": 53888,
+    "output_tokens": 7282,
+    "usage_counted_requests": 30
+   },
+   "judge_fact": {
+    "mean": 0.867,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   },
+   "judge_condition": {
+    "mean": 1,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   },
+   "judge_evidence": {
+    "mean": 1,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   },
+   "judge_judgment": {
+    "mean": 1,
+    "n": 30,
+    "na": 0,
+    "unavailable": 0
+   }
+  }
+ },
+ "eval_calls": {
+  "judge": {
+   "calls": 90,
+   "input_tokens": 287589,
+   "output_tokens": 46507,
+   "usage_counted_calls": 90,
+   "limit": 90
+  },
+  "ragas": {
+   "calls": 178,
+   "input_tokens": 246691,
+   "output_tokens": 77378,
+   "usage_counted_calls": 178,
+   "limit": 300
+  }
+ },
+ "cost": "확인 불가 (gpt-6-luna 단가를 확인하지 못함)"
+}

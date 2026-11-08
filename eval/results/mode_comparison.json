@@ -1,0 +1,1946 @@
+{
+ "rank": {
+  "naive": {
+   "hit@1": 0.571,
+   "hit@3": 0.821,
+   "hit@5": 0.929,
+   "hit@10": 0.929,
+   "recall@10": 0.833,
+   "mrr": 0.702,
+   "n": 28,
+   "na": 2,
+   "search_ms_avg": 17,
+   "search_ms_max": 22,
+   "overlap_with_naive": 1.0,
+   "first_gold_rank": {
+    "F-DEV-01": 3,
+    "F-DEV-02": 1,
+    "F-DEV-03": null,
+    "F-DEV-04": 1,
+    "F-DEV-05": 1,
+    "F-DEV-06": 1,
+    "F-DEV-07": 2,
+    "F-DEV-08": 1,
+    "F-DEV-09": 5,
+    "F-DEV-10": 1,
+    "F-DEV-11": 1,
+    "F-DEV-12": 1,
+    "F-DEV-13": 2,
+    "F-DEV-14": 1,
+    "F-DEV-15": 1,
+    "F-DEV-16": 3,
+    "F-DEV-17": 1,
+    "F-DEV-18": 1,
+    "F-DEV-20": null,
+    "F-DEV-21": 2,
+    "F-DEV-22": 1,
+    "F-DEV-23": 5,
+    "F-DEV-24": 1,
+    "F-DEV-25": 4,
+    "F-DEV-26": 1,
+    "F-DEV-27": 1,
+    "F-DEV-28": 3,
+    "F-DEV-29": 2
+   }
+  },
+  "hybrid": {
+   "hit@1": 0.5,
+   "hit@3": 0.857,
+   "hit@5": 0.893,
+   "hit@10": 0.964,
+   "recall@10": 0.878,
+   "mrr": 0.66,
+   "n": 28,
+   "na": 2,
+   "search_ms_avg": 24,
+   "search_ms_max": 30,
+   "overlap_with_naive": 0.64,
+   "first_gold_rank": {
+    "F-DEV-01": 3,
+    "F-DEV-02": 2,
+    "F-DEV-03": 10,
+    "F-DEV-04": 2,
+    "F-DEV-05": 1,
+    "F-DEV-06": 1,
+    "F-DEV-07": 1,
+    "F-DEV-08": 3,
+    "F-DEV-09": 8,
+    "F-DEV-10": 3,
+    "F-DEV-11": 1,
+    "F-DEV-12": 1,
+    "F-DEV-13": 1,
+    "F-DEV-14": 4,
+    "F-DEV-15": 1,
+    "F-DEV-16": 3,
+    "F-DEV-17": 1,
+    "F-DEV-18": 1,
+    "F-DEV-20": null,
+    "F-DEV-21": 1,
+    "F-DEV-22": 2,
+    "F-DEV-23": 3,
+    "F-DEV-24": 1,
+    "F-DEV-25": 3,
+    "F-DEV-26": 1,
+    "F-DEV-27": 1,
+    "F-DEV-28": 2,
+    "F-DEV-29": 1
+   },
+   "bm25_only_chunks_avg": 1.1
+  },
+  "hybrid_rerank": {
+   "hit@1": 0.679,
+   "hit@3": 0.857,
+   "hit@5": 0.893,
+   "hit@10": 0.929,
+   "recall@10": 0.86,
+   "mrr": 0.775,
+   "n": 28,
+   "na": 2,
+   "search_ms_avg": 4823,
+   "search_ms_max": 5410,
+   "overlap_with_naive": 0.66,
+   "first_gold_rank": {
+    "F-DEV-01": 1,
+    "F-DEV-02": 1,
+    "F-DEV-03": null,
+    "F-DEV-04": 1,
+    "F-DEV-05": 1,
+    "F-DEV-06": 2,
+    "F-DEV-07": 1,
+    "F-DEV-08": 1,
+    "F-DEV-09": 3,
+    "F-DEV-10": 1,
+    "F-DEV-11": 1,
+    "F-DEV-12": 1,
+    "F-DEV-13": 2,
+    "F-DEV-14": 2,
+    "F-DEV-15": 1,
+    "F-DEV-16": 4,
+    "F-DEV-17": 1,
+    "F-DEV-18": 1,
+    "F-DEV-20": null,
+    "F-DEV-21": 1,
+    "F-DEV-22": 1,
+    "F-DEV-23": 9,
+    "F-DEV-24": 1,
+    "F-DEV-25": 1,
+    "F-DEV-26": 1,
+    "F-DEV-27": 1,
+    "F-DEV-28": 2,
+    "F-DEV-29": 1
+   },
+   "new_vs_hybrid_avg": 3.2
+  }
+ },
+ "answers": {
+  "by_mode": {
+   "naive": {
+    "answer_expected": {
+     "answered": 19,
+     "needs_clarification": 0,
+     "abstained": 7,
+     "error": 0
+    },
+    "clarify_ok": 2,
+    "abstain_ok": 2,
+    "attack_in_context": 5,
+    "attack_then_abstain": 2,
+    "context_chunks_avg": 10,
+    "retrieve_ms_median": 20,
+    "generate_ms_median": 2884
+   },
+   "hybrid": {
+    "answer_expected": {
+     "answered": 21,
+     "needs_clarification": 0,
+     "abstained": 5,
+     "error": 0
+    },
+    "clarify_ok": 1,
+    "abstain_ok": 2,
+    "attack_in_context": 3,
+    "attack_then_abstain": 1,
+    "context_chunks_avg": 10,
+    "retrieve_ms_median": 27,
+    "generate_ms_median": 2758
+   },
+   "hybrid_rerank": {
+    "answer_expected": {
+     "answered": 21,
+     "needs_clarification": 0,
+     "abstained": 5,
+     "error": 0
+    },
+    "clarify_ok": 2,
+    "abstain_ok": 2,
+    "attack_in_context": 2,
+    "attack_then_abstain": 0,
+    "context_chunks_avg": 10,
+    "retrieve_ms_median": 5502,
+    "generate_ms_median": 2990
+   }
+  },
+  "differs": {
+   "F-DEV-01": {
+    "expected": "answer",
+    "naive": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "answered",
+     "fact": 0,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-03": {
+    "expected": "answer",
+    "naive": {
+     "status": "answered",
+     "fact": 0,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "answered",
+     "fact": 0,
+     "evidence": 0,
+     "judgment": 1,
+     "attack": true,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-06": {
+    "expected": "answer",
+    "naive": {
+     "status": "abstained",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": true,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-12": {
+    "expected": "abstain",
+    "naive": {
+     "status": "abstained",
+     "fact": 0,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "abstained",
+     "fact": 0,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "abstained",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-13": {
+    "expected": "answer",
+    "naive": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "abstained",
+     "fact": 0,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-15": {
+    "expected": "answer",
+    "naive": {
+     "status": "answered",
+     "fact": 0,
+     "evidence": 0,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-17": {
+    "expected": "answer",
+    "naive": {
+     "status": "abstained",
+     "fact": 0,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-19": {
+    "expected": "clarify",
+    "naive": {
+     "status": "needs_clarification",
+     "fact": 0,
+     "evidence": 0,
+     "judgment": 0,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 0,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "needs_clarification",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-21": {
+    "expected": "answer",
+    "naive": {
+     "status": "abstained",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": true,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "abstained",
+     "fact": 0,
+     "evidence": 1,
+     "judgment": 0,
+     "attack": true,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-24": {
+    "expected": "answer",
+    "naive": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "abstained",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-26": {
+    "expected": "answer",
+    "naive": {
+     "status": "abstained",
+     "fact": 0,
+     "evidence": 0,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "answered",
+     "fact": 0,
+     "evidence": 0,
+     "judgment": 0,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "abstained",
+     "fact": 0,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   },
+   "F-DEV-29": {
+    "expected": "answer",
+    "naive": {
+     "status": "answered",
+     "fact": 0,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    },
+    "hybrid_rerank": {
+     "status": "answered",
+     "fact": 1,
+     "evidence": 1,
+     "judgment": 1,
+     "attack": false,
+     "contexts": 10
+    }
+   }
+  }
+ },
+ "per_question_search": {
+  "F-DEV-01": {
+   "ranked": {
+    "naive": [
+     "FB15-p7-c2",
+     "FB13-p15-c1",
+     "FB01-p7-c2",
+     "FB01-p1-c2",
+     "FB01-p20-c1",
+     "FB01-p17-c2",
+     "FB01-p20-c2",
+     "FB01-p2-c2",
+     "FB01-p7-c5",
+     "FB01-p23-c3"
+    ],
+    "hybrid": [
+     "FB13-p15-c1",
+     "FB15-p7-c2",
+     "FB01-p20-c1",
+     "FB13-p1-c2",
+     "FB01-p7-c2",
+     "FB01-p20-c2",
+     "FB01-p7-c5",
+     "FB01-p1-c2",
+     "FB13-p12-c2",
+     "FB01-p17-c2"
+    ],
+    "hybrid_rerank": [
+     "FB01-p1-c2",
+     "FB01-p20-c1",
+     "FB11-p15-c3",
+     "FB15-p7-c2",
+     "FB13-p15-c1",
+     "FB15-p6-c2",
+     "FB01-p7-c2",
+     "FB01-p19-c3",
+     "FB01-p17-c2",
+     "FB01-p20-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB11-p15-c3",
+    "FB15-p6-c2",
+    "FB01-p19-c3"
+   ]
+  },
+  "F-DEV-02": {
+   "ranked": {
+    "naive": [
+     "FB01-p2-c1",
+     "FB12-p13-c2",
+     "FB14-p13-c2",
+     "FB01-p19-c4",
+     "FB07-p1-c1",
+     "FB01-p2-c4",
+     "FB07-p7-c1",
+     "FB12-p8-c2",
+     "FB01-p6-c2",
+     "FB01-p6-c3"
+    ],
+    "hybrid": [
+     "FB12-p13-c2",
+     "FB07-p1-c1",
+     "FB12-p13-c4",
+     "FB07-p7-c1",
+     "FB01-p19-c4",
+     "FB01-p2-c5",
+     "FB12-p20-c2",
+     "FB12-p8-c2",
+     "FB11-p6-c5",
+     "FB07-p22-c1"
+    ],
+    "hybrid_rerank": [
+     "FB07-p1-c1",
+     "FB12-p8-c2",
+     "FB14-p13-c2",
+     "FB12-p13-c2",
+     "FB01-p2-c1",
+     "FB07-p7-c1",
+     "FB08-p15-c1",
+     "FB07-p22-c1",
+     "FB01-p19-c4",
+     "FB11-p6-c5"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB14-p13-c2",
+    "FB01-p2-c1",
+    "FB08-p15-c1"
+   ]
+  },
+  "F-DEV-03": {
+   "ranked": {
+    "naive": [
+     "FB15-p1-c2",
+     "FB11-p15-c2",
+     "FB15-p5-c2",
+     "FB15-p18-c1",
+     "FB13-p15-c1",
+     "FB11-p19-c2",
+     "FB13-p14-c5",
+     "FB11-p6-c3",
+     "FB15-p1-c4",
+     "FB14-p5-c5"
+    ],
+    "hybrid": [
+     "FB15-p1-c2",
+     "FB11-p15-c2",
+     "FB11-p19-c2",
+     "FB15-p5-c2",
+     "FB15-p18-c1",
+     "FB14-p10-c6",
+     "FB01-p17-c1",
+     "FB15-p1-c3",
+     "FB13-p15-c1",
+     "FB02-p20-c1"
+    ],
+    "hybrid_rerank": [
+     "FB15-p5-c2",
+     "FB15-p1-c2",
+     "FB11-p19-c2",
+     "FB14-p5-c5",
+     "FB01-p17-c1",
+     "FB11-p6-c3",
+     "FB11-p15-c2",
+     "FB09-p23-c3",
+     "FB01-p13-c5",
+     "FB14-p10-c6"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB02-p20-c1"
+   ],
+   "rerank_new": [
+    "FB14-p5-c5",
+    "FB11-p6-c3",
+    "FB09-p23-c3",
+    "FB01-p13-c5"
+   ]
+  },
+  "F-DEV-04": {
+   "ranked": {
+    "naive": [
+     "FB04-p2-c1",
+     "FB08-p1-c1",
+     "FB12-p8-c3",
+     "FB08-p15-c1",
+     "FB04-p17-c3",
+     "FB04-p7-c2",
+     "FB04-p11-c2",
+     "FB01-p2-c1",
+     "FB07-p1-c1",
+     "FB01-p19-c4"
+    ],
+    "hybrid": [
+     "FB12-p8-c3",
+     "FB04-p2-c1",
+     "FB12-p8-c2",
+     "FB07-p1-c1",
+     "FB08-p15-c1",
+     "FB14-p13-c2",
+     "FB04-p7-c2",
+     "FB01-p6-c2",
+     "FB07-p7-c1",
+     "FB07-p6-c1"
+    ],
+    "hybrid_rerank": [
+     "FB04-p2-c1",
+     "FB12-p8-c3",
+     "FB08-p1-c1",
+     "FB08-p15-c1",
+     "FB04-p11-c2",
+     "FB04-p17-c3",
+     "FB04-p7-c2",
+     "FB14-p13-c2",
+     "FB12-p8-c2",
+     "FB07-p1-c1"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB07-p6-c1"
+   ],
+   "rerank_new": [
+    "FB08-p1-c1",
+    "FB04-p11-c2",
+    "FB04-p17-c3"
+   ]
+  },
+  "F-DEV-05": {
+   "ranked": {
+    "naive": [
+     "FB14-p21-c3",
+     "FB14-p1-c1",
+     "FB14-p16-c4",
+     "FB14-p15-c1",
+     "FB15-p19-c2",
+     "FB14-p5-c2",
+     "FB13-p23-c2",
+     "FB13-p19-c1",
+     "FB14-p16-c1",
+     "FB09-p4-c4"
+    ],
+    "hybrid": [
+     "FB14-p1-c1",
+     "FB14-p16-c4",
+     "FB01-p19-c2",
+     "FB14-p21-c3",
+     "FB15-p19-c1",
+     "FB14-p1-c5",
+     "FB14-p15-c1",
+     "FB15-p19-c2",
+     "FB14-p5-c2",
+     "FB12-p17-c2"
+    ],
+    "hybrid_rerank": [
+     "FB14-p1-c1",
+     "FB14-p21-c3",
+     "FB15-p19-c2",
+     "FB09-p4-c4",
+     "FB15-p19-c1",
+     "FB14-p16-c4",
+     "FB14-p16-c1",
+     "FB14-p5-c2",
+     "FB13-p19-c1",
+     "FB01-p19-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB15-p19-c1",
+    "FB14-p1-c5",
+    "FB12-p17-c2"
+   ],
+   "rerank_new": [
+    "FB09-p4-c4",
+    "FB14-p16-c1",
+    "FB13-p19-c1"
+   ]
+  },
+  "F-DEV-06": {
+   "ranked": {
+    "naive": [
+     "FB05-p1-c2",
+     "FB05-p1-c3",
+     "FB13-p6-c3",
+     "FB05-p14-c2",
+     "FB14-p20-c3",
+     "FB13-p11-c2",
+     "FB11-p6-c4",
+     "FB05-p6-c2",
+     "FB05-p14-c3",
+     "FB15-p13-c2"
+    ],
+    "hybrid": [
+     "FB05-p1-c2",
+     "FB05-p1-c3",
+     "FB05-p6-c2",
+     "FB13-p6-c3",
+     "FB14-p20-c3",
+     "FB05-p14-c2",
+     "FB05-p14-c3",
+     "FB15-p13-c3",
+     "FB08-p18-c1",
+     "FB08-p11-c3"
+    ],
+    "hybrid_rerank": [
+     "FB08-p3-c2",
+     "FB05-p1-c2",
+     "FB13-p11-c2",
+     "FB05-p6-c2",
+     "FB15-p13-c3",
+     "FB13-p6-c3",
+     "FB13-p3-c1",
+     "FB08-p11-c3",
+     "FB14-p20-c3",
+     "FB08-p18-c1"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB08-p3-c2",
+    "FB13-p11-c2",
+    "FB13-p3-c1"
+   ]
+  },
+  "F-DEV-07": {
+   "ranked": {
+    "naive": [
+     "FB15-p18-c2",
+     "FB03-p1-c1",
+     "FB01-p2-c2",
+     "FB09-p20-c2",
+     "FB15-p5-c2",
+     "FB09-p23-c3",
+     "FB01-p1-c2",
+     "FB03-p1-c4",
+     "FB01-p16-c5",
+     "FB15-p7-c2"
+    ],
+    "hybrid": [
+     "FB03-p1-c1",
+     "FB09-p23-c3",
+     "FB03-p1-c4",
+     "FB09-p12-c2",
+     "FB15-p18-c2",
+     "FB09-p7-c2",
+     "FB13-p24-c3",
+     "FB01-p2-c2",
+     "FB09-p20-c2",
+     "FB15-p5-c2"
+    ],
+    "hybrid_rerank": [
+     "FB01-p2-c2",
+     "FB01-p23-c3",
+     "FB01-p16-c5",
+     "FB01-p1-c2",
+     "FB03-p1-c4",
+     "FB15-p18-c2",
+     "FB15-p7-c2",
+     "FB15-p5-c2",
+     "FB09-p7-c2",
+     "FB09-p20-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB09-p7-c2",
+    "FB13-p24-c3"
+   ],
+   "rerank_new": [
+    "FB01-p23-c3",
+    "FB01-p16-c5",
+    "FB01-p1-c2",
+    "FB15-p7-c2"
+   ]
+  },
+  "F-DEV-08": {
+   "ranked": {
+    "naive": [
+     "FB10-p2-c1",
+     "FB14-p13-c2",
+     "FB14-p21-c4",
+     "FB14-p11-c2",
+     "FB14-p17-c1",
+     "FB10-p8-c5",
+     "FB10-p22-c4",
+     "FB10-p15-c4",
+     "FB10-p17-c2",
+     "FB10-p23-c4"
+    ],
+    "hybrid": [
+     "FB14-p11-c2",
+     "FB14-p21-c4",
+     "FB10-p2-c1",
+     "FB10-p17-c2",
+     "FB14-p17-c1",
+     "FB10-p17-c3",
+     "FB10-p8-c5",
+     "FB10-p23-c4",
+     "FB10-p13-c3",
+     "FB10-p16-c4"
+    ],
+    "hybrid_rerank": [
+     "FB10-p2-c1",
+     "FB10-p17-c2",
+     "FB10-p8-c5",
+     "FB10-p18-c2",
+     "FB10-p16-c4",
+     "FB10-p23-c4",
+     "FB10-p22-c4",
+     "FB10-p13-c3",
+     "FB10-p15-c4",
+     "FB10-p17-c3"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB10-p16-c4"
+   ],
+   "rerank_new": [
+    "FB10-p18-c2",
+    "FB10-p22-c4",
+    "FB10-p15-c4"
+   ]
+  },
+  "F-DEV-09": {
+   "ranked": {
+    "naive": [
+     "FB15-p2-c2",
+     "FB15-p8-c4",
+     "FB14-p21-c4",
+     "FB15-p2-c5",
+     "FB10-p15-c1",
+     "FB15-p2-c3",
+     "FB14-p16-c2",
+     "FB13-p22-c4",
+     "FB15-p2-c1",
+     "FB10-p11-c3"
+    ],
+    "hybrid": [
+     "FB15-p2-c2",
+     "FB15-p8-c4",
+     "FB15-p2-c5",
+     "FB15-p2-c1",
+     "FB14-p21-c4",
+     "FB15-p10-c1",
+     "FB15-p4-c3",
+     "FB10-p15-c1",
+     "FB15-p9-c4",
+     "FB15-p2-c3"
+    ],
+    "hybrid_rerank": [
+     "FB15-p8-c4",
+     "FB15-p2-c2",
+     "FB10-p15-c1",
+     "FB15-p2-c5",
+     "FB13-p22-c4",
+     "FB15-p2-c3",
+     "FB10-p23-c2",
+     "FB14-p21-c4",
+     "FB15-p9-c4",
+     "FB10-p19-c5"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB15-p10-c1",
+    "FB15-p4-c3",
+    "FB15-p9-c4"
+   ],
+   "rerank_new": [
+    "FB13-p22-c4",
+    "FB10-p23-c2",
+    "FB10-p19-c5"
+   ]
+  },
+  "F-DEV-10": {
+   "ranked": {
+    "naive": [
+     "FB10-p3-c1",
+     "FB15-p8-c5",
+     "FB15-p2-c3",
+     "FB10-p11-c5",
+     "FB10-p18-c2",
+     "FB10-p16-c1",
+     "FB10-p2-c4",
+     "FB10-p5-c1",
+     "FB10-p3-c3",
+     "FB10-p3-c4"
+    ],
+    "hybrid": [
+     "FB15-p8-c5",
+     "FB15-p2-c3",
+     "FB10-p3-c1",
+     "FB10-p3-c3",
+     "FB10-p16-c1",
+     "FB04-p3-c3",
+     "FB10-p18-c2",
+     "FB10-p11-c5",
+     "FB10-p2-c4",
+     "FB10-p9-c4"
+    ],
+    "hybrid_rerank": [
+     "FB10-p3-c1",
+     "FB15-p8-c5",
+     "FB15-p2-c3",
+     "FB10-p18-c2",
+     "FB10-p9-c4",
+     "FB04-p3-c1",
+     "FB10-p11-c5",
+     "FB10-p16-c1",
+     "FB04-p3-c3",
+     "FB10-p14-c4"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB04-p3-c1",
+    "FB10-p14-c4"
+   ]
+  },
+  "F-DEV-11": {
+   "ranked": {
+    "naive": [
+     "FB09-p7-c3",
+     "FB09-p10-c3",
+     "FB09-p16-c3",
+     "FB03-p11-c5",
+     "FB09-p18-c3",
+     "FB09-p16-c1",
+     "FB03-p19-c5",
+     "FB09-p1-c3",
+     "FB03-p23-c3",
+     "FB03-p2-c1"
+    ],
+    "hybrid": [
+     "FB09-p7-c3",
+     "FB09-p10-c3",
+     "FB03-p11-c5",
+     "FB09-p16-c1",
+     "FB09-p16-c3",
+     "FB09-p1-c3",
+     "FB03-p19-c5",
+     "FB03-p2-c1",
+     "FB09-p20-c4",
+     "FB09-p7-c1"
+    ],
+    "hybrid_rerank": [
+     "FB03-p2-c1",
+     "FB09-p1-c3",
+     "FB03-p19-c5",
+     "FB09-p10-c3",
+     "FB09-p7-c3",
+     "FB09-p16-c1",
+     "FB09-p7-c1",
+     "FB09-p20-c2",
+     "FB03-p11-c5",
+     "FB09-p20-c4"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB09-p20-c2"
+   ]
+  },
+  "F-DEV-12": {
+   "ranked": {
+    "naive": [
+     "FB07-p19-c3",
+     "FB07-p4-c1",
+     "FB12-p1-c3",
+     "FB01-p12-c4",
+     "FB07-p21-c4",
+     "FB12-p5-c2",
+     "FB12-p9-c2",
+     "FB01-p21-c5",
+     "FB12-p11-c2",
+     "FB12-p17-c2"
+    ],
+    "hybrid": [
+     "FB07-p4-c1",
+     "FB07-p19-c3",
+     "FB07-p21-c4",
+     "FB12-p1-c3",
+     "FB01-p6-c4",
+     "FB12-p9-c2",
+     "FB12-p5-c2",
+     "FB01-p4-c2",
+     "FB04-p7-c5",
+     "FB01-p21-c5"
+    ],
+    "hybrid_rerank": [
+     "FB07-p4-c1",
+     "FB01-p4-c2",
+     "FB01-p12-c4",
+     "FB04-p7-c5",
+     "FB12-p23-c3",
+     "FB04-p4-c1",
+     "FB01-p6-c4",
+     "FB12-p11-c2",
+     "FB07-p19-c3",
+     "FB12-p9-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB01-p12-c4",
+    "FB12-p23-c3",
+    "FB04-p4-c1",
+    "FB12-p11-c2"
+   ]
+  },
+  "F-DEV-13": {
+   "ranked": {
+    "naive": [
+     "FB15-p5-c3",
+     "FB04-p8-c2",
+     "FB11-p19-c3",
+     "FB04-p15-c4",
+     "FB04-p14-c3",
+     "FB04-p14-c1",
+     "FB09-p13-c4",
+     "FB15-p13-c1",
+     "FB15-p13-c5",
+     "FB15-p21-c4"
+    ],
+    "hybrid": [
+     "FB04-p8-c2",
+     "FB11-p19-c3",
+     "FB04-p15-c4",
+     "FB08-p18-c2",
+     "FB04-p14-c3",
+     "FB04-p14-c1",
+     "FB15-p13-c5",
+     "FB08-p17-c1",
+     "FB08-p11-c1",
+     "FB15-p5-c3"
+    ],
+    "hybrid_rerank": [
+     "FB09-p13-c4",
+     "FB04-p13-c2",
+     "FB04-p11-c2",
+     "FB08-p11-c1",
+     "FB08-p17-c1",
+     "FB15-p21-c4",
+     "FB11-p19-c3",
+     "FB04-p8-c2",
+     "FB04-p14-c3",
+     "FB15-p13-c5"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB09-p13-c4",
+    "FB04-p13-c2",
+    "FB04-p11-c2",
+    "FB15-p21-c4"
+   ]
+  },
+  "F-DEV-14": {
+   "ranked": {
+    "naive": [
+     "FB07-p8-c2",
+     "FB07-p12-c1",
+     "FB14-p18-c2",
+     "FB07-p12-c2",
+     "FB15-p7-c5",
+     "FB14-p18-c1",
+     "FB07-p1-c5",
+     "FB08-p15-c2",
+     "FB07-p4-c3",
+     "FB15-p3-c2"
+    ],
+    "hybrid": [
+     "FB15-p7-c5",
+     "FB14-p18-c2",
+     "FB14-p18-c1",
+     "FB07-p12-c2",
+     "FB08-p15-c3",
+     "FB14-p12-c4",
+     "FB08-p1-c2",
+     "FB14-p18-c5",
+     "FB07-p8-c2",
+     "FB07-p12-c1"
+    ],
+    "hybrid_rerank": [
+     "FB15-p7-c5",
+     "FB08-p1-c2",
+     "FB08-p15-c3",
+     "FB14-p18-c1",
+     "FB07-p12-c2",
+     "FB08-p15-c2",
+     "FB14-p18-c2",
+     "FB07-p12-c1",
+     "FB07-p15-c4",
+     "FB08-p8-c1"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB08-p15-c2",
+    "FB07-p15-c4",
+    "FB08-p8-c1"
+   ]
+  },
+  "F-DEV-15": {
+   "ranked": {
+    "naive": [
+     "FB13-p2-c4",
+     "FB13-p18-c2",
+     "FB10-p11-c2",
+     "FB13-p12-c5",
+     "FB13-p8-c4",
+     "FB10-p19-c4",
+     "FB10-p22-c4",
+     "FB13-p2-c2",
+     "FB10-p8-c5",
+     "FB14-p21-c4"
+    ],
+    "hybrid": [
+     "FB10-p11-c2",
+     "FB13-p2-c2",
+     "FB14-p21-c4",
+     "FB10-p19-c4",
+     "FB10-p1-c4",
+     "FB14-p17-c1",
+     "FB13-p8-c2",
+     "FB10-p19-c2",
+     "FB10-p18-c2",
+     "FB13-p2-c4"
+    ],
+    "hybrid_rerank": [
+     "FB13-p2-c2",
+     "FB10-p19-c2",
+     "FB10-p8-c5",
+     "FB13-p12-c5",
+     "FB10-p11-c2",
+     "FB13-p2-c4",
+     "FB13-p18-c2",
+     "FB10-p19-c4",
+     "FB10-p1-c4",
+     "FB10-p18-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB10-p8-c5",
+    "FB13-p12-c5",
+    "FB13-p18-c2"
+   ]
+  },
+  "F-DEV-16": {
+   "ranked": {
+    "naive": [
+     "FB15-p3-c2",
+     "FB15-p7-c4",
+     "FB07-p16-c3",
+     "FB07-p16-c2",
+     "FB15-p21-c2",
+     "FB12-p18-c2",
+     "FB11-p17-c3",
+     "FB07-p16-c6",
+     "FB07-p16-c1",
+     "FB12-p13-c4"
+    ],
+    "hybrid": [
+     "FB15-p3-c2",
+     "FB15-p7-c4",
+     "FB07-p16-c2",
+     "FB07-p16-c3",
+     "FB01-p21-c2",
+     "FB15-p3-c5",
+     "FB15-p21-c2",
+     "FB15-p18-c1",
+     "FB12-p18-c2",
+     "FB01-p6-c5"
+    ],
+    "hybrid_rerank": [
+     "FB15-p7-c4",
+     "FB15-p3-c2",
+     "FB11-p17-c3",
+     "FB07-p16-c3",
+     "FB07-p16-c2",
+     "FB15-p21-c2",
+     "FB07-p16-c1",
+     "FB01-p21-c2",
+     "FB11-p20-c2",
+     "FB07-p19-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB01-p21-c2",
+    "FB15-p3-c5",
+    "FB15-p18-c1",
+    "FB01-p6-c5"
+   ],
+   "rerank_new": [
+    "FB11-p17-c3",
+    "FB07-p16-c1",
+    "FB11-p20-c2",
+    "FB07-p19-c2"
+   ]
+  },
+  "F-DEV-17": {
+   "ranked": {
+    "naive": [
+     "FB10-p11-c3",
+     "FB13-p22-c4",
+     "FB10-p11-c2",
+     "FB10-p23-c4",
+     "FB10-p8-c5",
+     "FB14-p21-c4",
+     "FB07-p20-c4",
+     "FB10-p2-c4",
+     "FB14-p11-c2",
+     "FB10-p17-c2"
+    ],
+    "hybrid": [
+     "FB10-p11-c3",
+     "FB07-p2-c1",
+     "FB13-p22-c4",
+     "FB07-p9-c1",
+     "FB10-p11-c2",
+     "FB07-p2-c4",
+     "FB10-p23-c4",
+     "FB08-p9-c1",
+     "FB10-p8-c5",
+     "FB07-p10-c1"
+    ],
+    "hybrid_rerank": [
+     "FB10-p8-c5",
+     "FB10-p23-c4",
+     "FB07-p20-c4",
+     "FB10-p17-c2",
+     "FB10-p2-c4",
+     "FB14-p21-c4",
+     "FB10-p11-c3",
+     "FB14-p11-c2",
+     "FB07-p2-c1",
+     "FB13-p22-c4"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB07-p2-c1",
+    "FB07-p9-c1",
+    "FB07-p2-c4",
+    "FB08-p9-c1",
+    "FB07-p10-c1"
+   ],
+   "rerank_new": [
+    "FB07-p20-c4",
+    "FB10-p17-c2",
+    "FB10-p2-c4",
+    "FB14-p21-c4",
+    "FB14-p11-c2"
+   ]
+  },
+  "F-DEV-18": {
+   "ranked": {
+    "naive": [
+     "FB10-p17-c2",
+     "FB10-p8-c5",
+     "FB10-p4-c3",
+     "FB14-p17-c1",
+     "FB10-p22-c4",
+     "FB14-p21-c4",
+     "FB10-p23-c4",
+     "FB10-p11-c2",
+     "FB07-p20-c4",
+     "FB10-p2-c3"
+    ],
+    "hybrid": [
+     "FB10-p17-c2",
+     "FB10-p8-c5",
+     "FB10-p23-c4",
+     "FB10-p4-c3",
+     "FB14-p21-c4",
+     "FB10-p11-c2",
+     "FB10-p18-c1",
+     "FB13-p12-c5",
+     "FB14-p17-c1",
+     "FB10-p16-c1"
+    ],
+    "hybrid_rerank": [
+     "FB10-p17-c2",
+     "FB10-p8-c5",
+     "FB10-p23-c4",
+     "FB10-p4-c3",
+     "FB10-p11-c2",
+     "FB13-p12-c5",
+     "FB10-p22-c4",
+     "FB14-p21-c4",
+     "FB07-p20-c4",
+     "FB10-p2-c3"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB10-p22-c4",
+    "FB07-p20-c4",
+    "FB10-p2-c3"
+   ]
+  },
+  "F-DEV-19": {
+   "ranked": {
+    "naive": [
+     "FB14-p21-c3",
+     "FB14-p15-c1",
+     "FB12-p19-c2",
+     "FB12-p20-c2",
+     "FB11-p17-c3",
+     "FB04-p17-c2",
+     "FB12-p9-c3",
+     "FB12-p14-c2",
+     "FB07-p19-c1",
+     "FB12-p3-c2"
+    ],
+    "hybrid": [
+     "FB07-p11-c5",
+     "FB14-p1-c1",
+     "FB14-p21-c3",
+     "FB06-p4-c2",
+     "FB14-p15-c1",
+     "FB07-p24-c5",
+     "FB12-p19-c2",
+     "FB01-p21-c1",
+     "FB12-p20-c2",
+     "FB08-p15-c2"
+    ],
+    "hybrid_rerank": [
+     "FB14-p21-c3",
+     "FB11-p17-c3",
+     "FB12-p20-c2",
+     "FB04-p17-c2",
+     "FB07-p19-c1",
+     "FB12-p9-c3",
+     "FB04-p2-c5",
+     "FB11-p17-c2",
+     "FB12-p14-c2",
+     "FB01-p21-c1"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB06-p4-c2",
+    "FB07-p24-c5",
+    "FB01-p21-c1",
+    "FB08-p15-c2"
+   ],
+   "rerank_new": [
+    "FB11-p17-c3",
+    "FB04-p17-c2",
+    "FB07-p19-c1",
+    "FB12-p9-c3",
+    "FB04-p2-c5",
+    "FB11-p17-c2",
+    "FB12-p14-c2"
+   ]
+  },
+  "F-DEV-20": {
+   "ranked": {
+    "naive": [
+     "FB01-p23-c3",
+     "FB01-p23-c2",
+     "FB01-p2-c1",
+     "FB01-p2-c2",
+     "FB12-p13-c2",
+     "FB01-p17-c2",
+     "FB09-p23-c3",
+     "FB15-p18-c2",
+     "FB15-p18-c1",
+     "FB15-p7-c2"
+    ],
+    "hybrid": [
+     "FB01-p2-c1",
+     "FB12-p13-c2",
+     "FB01-p19-c4",
+     "FB07-p7-c1",
+     "FB15-p7-c2",
+     "FB15-p1-c2",
+     "FB07-p1-c1",
+     "FB01-p23-c3",
+     "FB11-p12-c3",
+     "FB01-p23-c2"
+    ],
+    "hybrid_rerank": [
+     "FB12-p13-c2",
+     "FB01-p23-c3",
+     "FB01-p19-c4",
+     "FB01-p2-c1",
+     "FB07-p7-c1",
+     "FB04-p2-c1",
+     "FB01-p2-c2",
+     "FB07-p1-c1",
+     "FB12-p6-c3",
+     "FB15-p7-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB11-p12-c3"
+   ],
+   "rerank_new": [
+    "FB04-p2-c1",
+    "FB01-p2-c2",
+    "FB12-p6-c3"
+   ]
+  },
+  "F-DEV-21": {
+   "ranked": {
+    "naive": [
+     "FB11-p19-c3",
+     "FB05-p3-c2",
+     "FB08-p17-c1",
+     "FB15-p13-c2",
+     "FB04-p12-c2",
+     "FB04-p14-c3",
+     "FB04-p8-c2",
+     "FB15-p13-c1",
+     "FB08-p11-c1",
+     "FB08-p11-c3"
+    ],
+    "hybrid": [
+     "FB05-p3-c2",
+     "FB04-p14-c3",
+     "FB11-p19-c3",
+     "FB04-p8-c2",
+     "FB08-p11-c1",
+     "FB15-p13-c2",
+     "FB13-p2-c3",
+     "FB15-p13-c1",
+     "FB04-p23-c4",
+     "FB08-p18-c1"
+    ],
+    "hybrid_rerank": [
+     "FB04-p12-c2",
+     "FB05-p19-c3",
+     "FB11-p19-c3",
+     "FB05-p3-c2",
+     "FB04-p23-c4",
+     "FB13-p2-c3",
+     "FB08-p11-c1",
+     "FB08-p17-c1",
+     "FB08-p11-c3",
+     "FB04-p8-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB04-p12-c2",
+    "FB05-p19-c3",
+    "FB08-p17-c1",
+    "FB08-p11-c3"
+   ]
+  },
+  "F-DEV-22": {
+   "ranked": {
+    "naive": [
+     "FB08-p10-c1",
+     "FB08-p16-c1",
+     "FB08-p2-c1",
+     "FB08-p9-c1",
+     "FB07-p2-c1",
+     "FB07-p17-c1",
+     "FB12-p14-c4",
+     "FB07-p22-c3",
+     "FB07-p9-c1",
+     "FB15-p17-c2"
+    ],
+    "hybrid": [
+     "FB07-p2-c1",
+     "FB08-p10-c1",
+     "FB08-p2-c1",
+     "FB08-p9-c1",
+     "FB07-p9-c1",
+     "FB08-p21-c1",
+     "FB12-p14-c4",
+     "FB08-p16-c1",
+     "FB07-p17-c1",
+     "FB12-p14-c2"
+    ],
+    "hybrid_rerank": [
+     "FB08-p10-c1",
+     "FB08-p2-c1",
+     "FB08-p9-c1",
+     "FB08-p21-c1",
+     "FB07-p2-c1",
+     "FB08-p16-c1",
+     "FB07-p17-c1",
+     "FB07-p9-c1",
+     "FB07-p10-c1",
+     "FB15-p17-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB07-p10-c1",
+    "FB15-p17-c2"
+   ]
+  },
+  "F-DEV-23": {
+   "ranked": {
+    "naive": [
+     "FB14-p10-c6",
+     "FB15-p4-c2",
+     "FB13-p20-c5",
+     "FB15-p1-c3",
+     "FB03-p22-c3",
+     "FB15-p12-c1",
+     "FB03-p12-c3",
+     "FB14-p21-c2",
+     "FB14-p5-c5",
+     "FB13-p21-c5"
+    ],
+    "hybrid": [
+     "FB15-p4-c2",
+     "FB15-p12-c1",
+     "FB03-p22-c3",
+     "FB15-p12-c5",
+     "FB14-p10-c6",
+     "FB15-p11-c1",
+     "FB13-p20-c5",
+     "FB15-p1-c3",
+     "FB03-p17-c3",
+     "FB12-p12-c3"
+    ],
+    "hybrid_rerank": [
+     "FB15-p4-c2",
+     "FB13-p20-c5",
+     "FB15-p12-c5",
+     "FB15-p12-c1",
+     "FB15-p23-c2",
+     "FB15-p12-c2",
+     "FB15-p1-c3",
+     "FB15-p11-c1",
+     "FB03-p17-c3",
+     "FB03-p22-c3"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB15-p11-c1",
+    "FB03-p17-c3",
+    "FB12-p12-c3"
+   ],
+   "rerank_new": [
+    "FB15-p23-c2",
+    "FB15-p12-c2"
+   ]
+  },
+  "F-DEV-24": {
+   "ranked": {
+    "naive": [
+     "FB10-p3-c1",
+     "FB15-p2-c3",
+     "FB15-p8-c5",
+     "FB10-p11-c5",
+     "FB10-p5-c1",
+     "FB04-p3-c3",
+     "FB13-p19-c2",
+     "FB10-p16-c1",
+     "FB10-p18-c2",
+     "FB13-p4-c4"
+    ],
+    "hybrid": [
+     "FB10-p3-c1",
+     "FB10-p16-c1",
+     "FB15-p8-c5",
+     "FB04-p3-c3",
+     "FB15-p2-c3",
+     "FB10-p14-c4",
+     "FB10-p18-c2",
+     "FB10-p5-c5",
+     "FB13-p4-c4",
+     "FB10-p3-c4"
+    ],
+    "hybrid_rerank": [
+     "FB10-p18-c2",
+     "FB10-p3-c1",
+     "FB10-p14-c4",
+     "FB15-p2-c3",
+     "FB10-p16-c1",
+     "FB10-p11-c5",
+     "FB04-p3-c3",
+     "FB10-p5-c5",
+     "FB13-p4-c4",
+     "FB15-p8-c5"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB10-p11-c5"
+   ]
+  },
+  "F-DEV-25": {
+   "ranked": {
+    "naive": [
+     "FB12-p21-c1",
+     "FB13-p13-c2",
+     "FB10-p7-c6",
+     "FB03-p2-c4",
+     "FB13-p13-c4",
+     "FB15-p18-c3",
+     "FB13-p7-c1",
+     "FB09-p7-c1",
+     "FB03-p4-c1",
+     "FB15-p6-c3"
+    ],
+    "hybrid": [
+     "FB13-p7-c1",
+     "FB15-p18-c3",
+     "FB03-p4-c1",
+     "FB09-p7-c1",
+     "FB12-p21-c1",
+     "FB13-p13-c2",
+     "FB04-p13-c1",
+     "FB10-p7-c6",
+     "FB13-p17-c4",
+     "FB03-p2-c4"
+    ],
+    "hybrid_rerank": [
+     "FB06-p1-c4",
+     "FB03-p2-c4",
+     "FB13-p13-c2",
+     "FB03-p11-c5",
+     "FB15-p18-c3",
+     "FB09-p21-c2",
+     "FB09-p7-c1",
+     "FB13-p7-c1",
+     "FB12-p21-c1",
+     "FB10-p7-c6"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB04-p13-c1",
+    "FB13-p17-c4"
+   ],
+   "rerank_new": [
+    "FB06-p1-c4",
+    "FB03-p11-c5",
+    "FB09-p21-c2"
+   ]
+  },
+  "F-DEV-26": {
+   "ranked": {
+    "naive": [
+     "FB09-p7-c1",
+     "FB09-p11-c2",
+     "FB03-p23-c4",
+     "FB09-p1-c3",
+     "FB09-p5-c1",
+     "FB09-p7-c3",
+     "FB09-p16-c1",
+     "FB09-p10-c3",
+     "FB09-p11-c1",
+     "FB09-p11-c3"
+    ],
+    "hybrid": [
+     "FB09-p11-c2",
+     "FB09-p11-c1",
+     "FB06-p4-c1",
+     "FB09-p2-c3",
+     "FB09-p11-c3",
+     "FB09-p7-c1",
+     "FB06-p13-c3",
+     "FB03-p23-c4",
+     "FB09-p3-c2",
+     "FB09-p1-c3"
+    ],
+    "hybrid_rerank": [
+     "FB09-p1-c3",
+     "FB09-p7-c1",
+     "FB09-p16-c1",
+     "FB06-p4-c1",
+     "FB03-p23-c4",
+     "FB09-p11-c2",
+     "FB09-p3-c2",
+     "FB09-p10-c3",
+     "FB06-p13-c1",
+     "FB09-p18-c3"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB06-p13-c3",
+    "FB09-p3-c2"
+   ],
+   "rerank_new": [
+    "FB09-p16-c1",
+    "FB09-p10-c3",
+    "FB06-p13-c1",
+    "FB09-p18-c3"
+   ]
+  },
+  "F-DEV-27": {
+   "ranked": {
+    "naive": [
+     "FB05-p14-c3",
+     "FB05-p1-c3",
+     "FB15-p13-c2",
+     "FB13-p6-c3",
+     "FB15-p13-c3",
+     "FB11-p6-c4",
+     "FB08-p11-c3",
+     "FB14-p20-c3",
+     "FB05-p6-c2",
+     "FB11-p20-c4"
+    ],
+    "hybrid": [
+     "FB05-p1-c3",
+     "FB15-p13-c3",
+     "FB05-p6-c2",
+     "FB08-p11-c3",
+     "FB05-p1-c2",
+     "FB14-p20-c3",
+     "FB13-p11-c2",
+     "FB11-p20-c4",
+     "FB13-p6-c3",
+     "FB05-p15-c3"
+    ],
+    "hybrid_rerank": [
+     "FB05-p1-c3",
+     "FB05-p6-c2",
+     "FB05-p14-c3",
+     "FB05-p23-c1",
+     "FB08-p11-c3",
+     "FB05-p15-c3",
+     "FB08-p3-c2",
+     "FB13-p6-c3",
+     "FB11-p20-c4",
+     "FB13-p11-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB05-p14-c3",
+    "FB05-p23-c1",
+    "FB08-p3-c2"
+   ]
+  },
+  "F-DEV-28": {
+   "ranked": {
+    "naive": [
+     "FB14-p17-c1",
+     "FB14-p21-c4",
+     "FB10-p23-c4",
+     "FB10-p15-c4",
+     "FB10-p11-c2",
+     "FB14-p11-c2",
+     "FB15-p8-c4",
+     "FB10-p17-c1",
+     "FB10-p11-c3",
+     "FB15-p2-c2"
+    ],
+    "hybrid": [
+     "FB15-p2-c2",
+     "FB10-p15-c4",
+     "FB10-p11-c2",
+     "FB14-p21-c4",
+     "FB10-p15-c2",
+     "FB10-p15-c1",
+     "FB10-p13-c3",
+     "FB15-p8-c4",
+     "FB10-p17-c3",
+     "FB07-p20-c4"
+    ],
+    "hybrid_rerank": [
+     "FB15-p2-c2",
+     "FB10-p15-c2",
+     "FB10-p13-c3",
+     "FB10-p15-c1",
+     "FB10-p2-c1",
+     "FB10-p15-c4",
+     "FB15-p8-c4",
+     "FB07-p20-c4",
+     "FB14-p21-c4",
+     "FB10-p11-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB10-p2-c1"
+   ]
+  },
+  "F-DEV-29": {
+   "ranked": {
+    "naive": [
+     "FB14-p19-c2",
+     "FB03-p3-c4",
+     "FB01-p23-c2",
+     "FB10-p21-c2",
+     "FB01-p18-c3",
+     "FB01-p18-c1",
+     "FB10-p7-c4",
+     "FB11-p6-c3",
+     "FB12-p19-c2",
+     "FB14-p18-c4"
+    ],
+    "hybrid": [
+     "FB03-p3-c4",
+     "FB03-p3-c3",
+     "FB14-p18-c4",
+     "FB15-p3-c2",
+     "FB14-p12-c2",
+     "FB14-p19-c2",
+     "FB01-p23-c2",
+     "FB07-p1-c2",
+     "FB10-p21-c2",
+     "FB07-p12-c4"
+    ],
+    "hybrid_rerank": [
+     "FB03-p3-c4",
+     "FB07-p1-c3",
+     "FB07-p12-c4",
+     "FB14-p18-c4",
+     "FB07-p1-c2",
+     "FB14-p12-c2",
+     "FB07-p21-c1",
+     "FB14-p18-c1",
+     "FB03-p3-c3",
+     "FB15-p3-c2"
+    ]
+   },
+   "bm25_only_in_hybrid": [
+    "FB07-p1-c2",
+    "FB07-p12-c4"
+   ],
+   "rerank_new": [
+    "FB07-p1-c3",
+    "FB07-p21-c1",
+    "FB14-p18-c1"
+   ]
+  },
+  "F-DEV-30": {
+   "ranked": {
+    "naive": [
+     "FB05-p1-c3",
+     "FB05-p1-c2",
+     "FB15-p13-c2",
+     "FB11-p6-c4",
+     "FB15-p13-c3",
+     "FB13-p6-c3",
+     "FB05-p14-c3",
+     "FB14-p20-c3",
+     "FB05-p14-c2",
+     "FB13-p11-c2"
+    ],
+    "hybrid": [
+     "FB05-p1-c3",
+     "FB05-p1-c2",
+     "FB13-p6-c3",
+     "FB05-p14-c3",
+     "FB14-p20-c3",
+     "FB15-p13-c3",
+     "FB05-p6-c2",
+     "FB05-p15-c3",
+     "FB05-p6-c3",
+     "FB05-p14-c2"
+    ],
+    "hybrid_rerank": [
+     "FB13-p11-c2",
+     "FB05-p1-c2",
+     "FB08-p11-c1",
+     "FB13-p6-c3",
+     "FB15-p13-c3",
+     "FB05-p14-c4",
+     "FB05-p1-c3",
+     "FB15-p13-c2",
+     "FB11-p6-c4",
+     "FB05-p14-c3"
+    ]
+   },
+   "bm25_only_in_hybrid": [],
+   "rerank_new": [
+    "FB13-p11-c2",
+    "FB08-p11-c1",
+    "FB05-p14-c4",
+    "FB15-p13-c2",
+    "FB11-p6-c4"
+   ]
+  }
+ }
+}
