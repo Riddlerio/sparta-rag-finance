@@ -1,0 +1,1382 @@
+{
+ "split": "development",
+ "modes": {
+  "naive": {
+   "context_chunk_hit": 0.607,
+   "context_group_recall": 0.411,
+   "n": 28,
+   "kinds": {
+    "일부 근거로 맞힘": 5,
+    "성공": 6,
+    "검색 · 문맥 실패": 3,
+    "생성 실패": 1,
+    "근거 밖에서 맞힘": 8,
+    "근거 일부 누락": 5,
+    "해당 없음": 2
+   },
+   "search": {
+    "chunk_hit@1": 0.179,
+    "chunk_hit@3": 0.393,
+    "chunk_hit@10": 0.607,
+    "chunk_mrr": 0.309,
+    "group_recall@10": 0.411,
+    "n": 28
+   }
+  },
+  "hybrid": {
+   "context_chunk_hit": 0.607,
+   "context_group_recall": 0.449,
+   "n": 28,
+   "kinds": {
+    "근거 일부 누락": 3,
+    "성공": 8,
+    "검색 · 문맥 실패": 5,
+    "일부 근거로 맞힘": 5,
+    "생성 실패": 1,
+    "근거 밖에서 맞힘": 6,
+    "해당 없음": 2
+   },
+   "search": {
+    "chunk_hit@1": 0.179,
+    "chunk_hit@3": 0.464,
+    "chunk_hit@10": 0.607,
+    "chunk_mrr": 0.318,
+    "group_recall@10": 0.449,
+    "n": 28
+   }
+  },
+  "hybrid_rerank": {
+   "context_chunk_hit": 0.714,
+   "context_group_recall": 0.47,
+   "n": 28,
+   "kinds": {
+    "일부 근거로 맞힘": 10,
+    "성공": 7,
+    "근거 밖에서 맞힘": 7,
+    "검색 · 문맥 실패": 1,
+    "해당 없음": 2,
+    "근거 일부 누락": 3
+   },
+   "search": {
+    "chunk_hit@1": 0.5,
+    "chunk_hit@3": 0.607,
+    "chunk_hit@10": 0.714,
+    "chunk_mrr": 0.571,
+    "group_recall@10": 0.47,
+    "n": 28
+   }
+  }
+ },
+ "rows": [
+  {
+   "id": "F-DEV-01",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB02-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-02",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-03",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 0,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "검색 · 문맥 실패",
+   "missing": [
+    [
+     "FB02-p1-c1"
+    ],
+    [
+     "FB02-p1-c3"
+    ],
+    [
+     "FB02-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-04",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-05",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-06",
+   "mode": "naive",
+   "status": "abstained",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-07",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB03-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-08",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-09",
+   "mode": "naive",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "검색 · 문맥 실패",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB10-p2-c2"
+    ],
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-10",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-11",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-12",
+   "mode": "naive",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "생성 실패",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-13",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB01-p2-c2"
+    ],
+    [
+     "FB04-p2-c2"
+    ],
+    [
+     "FB05-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-14",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB07-p1-c1"
+    ],
+    [
+     "FB07-p1-c2"
+    ],
+    [
+     "FB08-p1-c1"
+    ],
+    [
+     "FB08-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-15",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.3333333333333333,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-16",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB07-p1-c1"
+    ],
+    [
+     "FB07-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-17",
+   "mode": "naive",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.3333333333333333,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB07-p2-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-18",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-19",
+   "mode": "naive",
+   "status": "needs_clarification",
+   "fact": 0,
+   "hit": null,
+   "group_recall": null,
+   "kind": "해당 없음",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-20",
+   "mode": "naive",
+   "status": "abstained",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB02-p4-c4"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-21",
+   "mode": "naive",
+   "status": "abstained",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB04-p3-c1"
+    ],
+    [
+     "FB05-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-22",
+   "mode": "naive",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB04-p2-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-23",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB03-p1-c2"
+    ],
+    [
+     "FB03-p1-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-24",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB04-p3-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-25",
+   "mode": "naive",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "검색 · 문맥 실패",
+   "missing": [
+    [
+     "FB03-p1-c1"
+    ],
+    [
+     "FB03-p1-c4"
+    ],
+    [
+     "FB06-p1-c1"
+    ],
+    [
+     "FB06-p1-c4"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-26",
+   "mode": "naive",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.3333333333333333,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB02-p2-c1",
+     "FB09-p1-c2"
+    ],
+    [
+     "FB06-p4-c1",
+     "FB09-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-27",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB05-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-28",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-29",
+   "mode": "naive",
+   "status": "answered",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB03-p3-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-30",
+   "mode": "naive",
+   "status": "needs_clarification",
+   "fact": 1,
+   "hit": null,
+   "group_recall": null,
+   "kind": "해당 없음",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-01",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB02-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-02",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-03",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 0,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "검색 · 문맥 실패",
+   "missing": [
+    [
+     "FB02-p1-c1"
+    ],
+    [
+     "FB02-p1-c3"
+    ],
+    [
+     "FB02-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-04",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-05",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-06",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-07",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB03-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-08",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-09",
+   "mode": "hybrid",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "검색 · 문맥 실패",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB10-p2-c2"
+    ],
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-10",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-11",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-12",
+   "mode": "hybrid",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "생성 실패",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-13",
+   "mode": "hybrid",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "검색 · 문맥 실패",
+   "missing": [
+    [
+     "FB01-p2-c2"
+    ],
+    [
+     "FB04-p2-c2"
+    ],
+    [
+     "FB05-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-14",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.25,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB07-p1-c1"
+    ],
+    [
+     "FB07-p1-c2"
+    ],
+    [
+     "FB08-p1-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-15",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.3333333333333333,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-16",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB07-p1-c1"
+    ],
+    [
+     "FB07-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-17",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.3333333333333333,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB10-p2-c4"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-18",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c2"
+    ],
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-19",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": null,
+   "group_recall": null,
+   "kind": "해당 없음",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-20",
+   "mode": "hybrid",
+   "status": "abstained",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB02-p4-c4"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-21",
+   "mode": "hybrid",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "검색 · 문맥 실패",
+   "missing": [
+    [
+     "FB04-p3-c1"
+    ],
+    [
+     "FB05-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-22",
+   "mode": "hybrid",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB04-p2-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-23",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB03-p1-c2"
+    ],
+    [
+     "FB03-p1-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-24",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB04-p3-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-25",
+   "mode": "hybrid",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "검색 · 문맥 실패",
+   "missing": [
+    [
+     "FB03-p1-c1"
+    ],
+    [
+     "FB03-p1-c4"
+    ],
+    [
+     "FB06-p1-c1"
+    ],
+    [
+     "FB06-p1-c4"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-26",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.6666666666666666,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB02-p2-c1",
+     "FB09-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-27",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-28",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-29",
+   "mode": "hybrid",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-30",
+   "mode": "hybrid",
+   "status": "needs_clarification",
+   "fact": 1,
+   "hit": null,
+   "group_recall": null,
+   "kind": "해당 없음",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-01",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB02-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-02",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-03",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB02-p1-c1"
+    ],
+    [
+     "FB02-p1-c3"
+    ],
+    [
+     "FB02-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-04",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-05",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-06",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB05-p1-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-07",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB03-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-08",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-09",
+   "mode": "hybrid_rerank",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "검색 · 문맥 실패",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB10-p2-c2"
+    ],
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-10",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-11",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-12",
+   "mode": "hybrid_rerank",
+   "status": "abstained",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-13",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB01-p2-c2"
+    ],
+    [
+     "FB04-p2-c2"
+    ],
+    [
+     "FB05-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-14",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.25,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB07-p1-c1"
+    ],
+    [
+     "FB07-p1-c2"
+    ],
+    [
+     "FB08-p1-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-15",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.3333333333333333,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-16",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB07-p1-c1"
+    ],
+    [
+     "FB07-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-17",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.6666666666666666,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-18",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-19",
+   "mode": "hybrid_rerank",
+   "status": "needs_clarification",
+   "fact": 1,
+   "hit": null,
+   "group_recall": null,
+   "kind": "해당 없음",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-20",
+   "mode": "hybrid_rerank",
+   "status": "abstained",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB02-p4-c4"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-21",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB04-p3-c1"
+    ],
+    [
+     "FB05-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-22",
+   "mode": "hybrid_rerank",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB04-p2-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-23",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB03-p1-c2"
+    ],
+    [
+     "FB03-p1-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-24",
+   "mode": "hybrid_rerank",
+   "status": "abstained",
+   "fact": 1,
+   "hit": 0,
+   "group_recall": 0.0,
+   "kind": "근거 밖에서 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c1"
+    ],
+    [
+     "FB04-p3-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-25",
+   "mode": "hybrid_rerank",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.25,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB03-p1-c1"
+    ],
+    [
+     "FB03-p1-c4"
+    ],
+    [
+     "FB06-p1-c1"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-26",
+   "mode": "hybrid_rerank",
+   "status": "abstained",
+   "fact": 0,
+   "hit": 1,
+   "group_recall": 0.6666666666666666,
+   "kind": "근거 일부 누락",
+   "missing": [
+    [
+     "FB02-p2-c1",
+     "FB09-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-27",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB05-p1-c2"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-28",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 0.5,
+   "kind": "일부 근거로 맞힘",
+   "missing": [
+    [
+     "FB10-p2-c3"
+    ]
+   ]
+  },
+  {
+   "id": "F-DEV-29",
+   "mode": "hybrid_rerank",
+   "status": "answered",
+   "fact": 1,
+   "hit": 1,
+   "group_recall": 1.0,
+   "kind": "성공",
+   "missing": []
+  },
+  {
+   "id": "F-DEV-30",
+   "mode": "hybrid_rerank",
+   "status": "needs_clarification",
+   "fact": 1,
+   "hit": null,
+   "group_recall": null,
+   "kind": "해당 없음",
+   "missing": []
+  }
+ ]
+}

@@ -4,6 +4,7 @@
    - Hit@1 · 3 · 5 · 10: 상위 k개 안에 정답 근거 문서가 있나
    - Recall@10: 정답 근거 문서 중 몇 개를 찾았나
    - MRR: 첫 정답 문서가 몇 등에 나왔나 (1등 = 1, 2등 = 0.5 …)
+   - 청크 단위 Hit@1 · 3 · 10 · MRR · 근거 묶음 Recall: 정답 파일 quote가 든 청크 기준
    - 검색 시간, BM25만 찾은 청크 수, 리랭커가 바꾼 청크 수
 2) 이미 저장한 답변 90개(run_eval 결과)를 방식별로 다시 읽는다 (추가 호출 없음)
 
@@ -21,7 +22,7 @@ from statistics import mean, median
 from app.config import CANDIDATES, CHUNKS_PATH, EVAL_DIR, ROOT, TOP_K
 from app.index import load_resources
 from app.retrieve import PIPELINES, bm25_search, dense_search
-from eval.run_eval import gold_books
+from eval.run_eval import chunk_rank_metrics, gold_books
 from eval.security_eval import attack_chunks
 
 MODES = list(PIPELINES)
@@ -66,6 +67,9 @@ def first_gold_rank(books: list[str], gold: set[str]) -> int | None:
 def rank_metrics(res, rows: dict, answers: dict) -> dict:
     """방식별 순위 지표. 정답 근거 문서가 없는 질문(보류가 정답인 질문)은 빼고 계산한다."""
     scored = [qid for qid in rows if gold_books(answers[qid])]
+    by_page = {}
+    for c in res.chunks:
+        by_page.setdefault((c["book_id"], c["page"]), []).append(c)
     out = {}
     for mode in MODES:
         ranks, recalls = [], []
@@ -84,6 +88,7 @@ def rank_metrics(res, rows: dict, answers: dict) -> dict:
             "search_ms_avg": round(mean(ms)), "search_ms_max": round(max(ms)),
             "overlap_with_naive": round(mean(overlap), 2),
             "first_gold_rank": dict(zip(scored, ranks)),
+            **chunk_rank_metrics({qid: rows[qid]["ranked"][mode] for qid in rows}, answers, by_page),
         }
     out["hybrid"]["bm25_only_chunks_avg"] = round(mean(len(r["bm25_only_in_hybrid"]) for r in rows.values()), 1)
     out["hybrid_rerank"]["new_vs_hybrid_avg"] = round(mean(len(r["rerank_new"]) for r in rows.values()), 1)
@@ -132,7 +137,8 @@ def write_md(rank: dict, ans: dict) -> None:
         return f"| {name} | " + " | ".join(str(v) for v in values) + " |"
 
     lines = ["# 검색 3방식 상세 비교 (개발 질문 30개)", "", row("지표", MODES), "|---|" + "---|" * len(MODES)]
-    for key in ("hit@1", "hit@3", "hit@5", f"hit@{TOP_K}", f"recall@{TOP_K}", "mrr", "search_ms_avg", "overlap_with_naive"):
+    for key in ("hit@1", "hit@3", "hit@5", f"hit@{TOP_K}", f"recall@{TOP_K}", "mrr",
+                "chunk_hit@1", "chunk_hit@3", "chunk_hit@10", "chunk_mrr", "group_recall@10", "search_ms_avg", "overlap_with_naive"):
         lines.append(row(key, [rank[m][key] for m in MODES]))
     for key in ("context_chunks_avg", "retrieve_ms_median", "generate_ms_median",
                 "attack_in_context", "attack_then_abstain", "clarify_ok", "abstain_ok"):

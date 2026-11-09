@@ -2,6 +2,7 @@
 
 채점 항목
 - 검색      Hit@10 · Recall@10: 모델이 본 문맥에 정답 근거 문서가 들어 있었나
+- 근거 문장 정답 파일의 quote가 든 청크(정답 청크)가 문맥에 들어 있었나 (문서가 아니라 문단 단위)
 - RAGAS     Faithfulness: 답변의 주장이 실제 문맥에 있나 (지어내지 않았나)
 - Judge     사실 · 조건 · 근거 · 판단 네 항목을 각각 1 또는 0
 - 운영      응답 시간 · 오류율 · 입력/출력 토큰 (채점에 쓴 호출은 따로 센다)
@@ -9,12 +10,18 @@
 순서 (정답 파일은 2단계에서 처음 연다. 1단계는 질문만 서버에 보낸다)
 1. 서버를 켜고  `python -m eval.run_eval run`    → eval/results/runs_development.jsonl
 2.              `python -m eval.run_eval score`  → scores_development.jsonl · summary_development.json · comparison_development.md
+3. (모델 호출 없음) `python -m eval.run_eval quote` → quote_development.json · quote_development.md
+   저장된 답변과 검색 순위를 정답 청크 기준으로 다시 채점하고, 실패를 검색 · 문맥 · 생성으로 나눈다.
+
+질문 묶음은 뒤에 붙여 바꾼다: `python -m eval.run_eval run additional` (기본은 development).
+개발 질문으로 설정을 고르고, 다른 묶음(test)은 최종 구성으로 한 번만 돌려 기록한다 (강의 8-4).
 
 호출 한도는 미리 정해 두고 넘으면 멈춘다: 서비스 90회, Judge 90회, RAGAS 300회.
 """
 import asyncio
 import json
 import math
+import re
 import sys
 import time
 from statistics import mean
@@ -23,10 +30,10 @@ from typing import Literal
 import httpx
 from pydantic import BaseModel, Field
 
-from app.config import EVAL_DIR, LLM_MODEL, ROOT, TOP_K
+from app.config import CHUNKS_PATH, EVAL_DIR, LLM_MODEL, ROOT, TOP_K
 from eval.llm_usage import UsageMeter, metered_async_http
 
-SPLIT = "development"
+SPLIT = sys.argv[2] if __name__ == "__main__" and len(sys.argv) > 2 else "development"
 MODES = ["naive", "hybrid", "hybrid_rerank"]
 API = "http://127.0.0.1:8000"
 OUT = ROOT / "eval" / "results"
@@ -34,6 +41,7 @@ RUNS = OUT / f"runs_{SPLIT}.jsonl"
 SCORES = OUT / f"scores_{SPLIT}.jsonl"
 SUMMARY = OUT / f"summary_{SPLIT}.json"
 TABLE = OUT / f"comparison_{SPLIT}.md"
+QUOTE_JSON, QUOTE_MD = OUT / f"quote_{SPLIT}.json", OUT / f"quote_{SPLIT}.md"
 SERVICE_MAX_CALLS, JUDGE_MAX_CALLS, RAGAS_MAX_CALLS = 90, 90, 300
 ACTION = {"answer": "answered", "clarify": "needs_clarification", "abstain": "abstained"}
 
@@ -136,6 +144,70 @@ def retrieval_score(run_row: dict, ans: dict) -> dict:
             "gold": sorted(gold), "found": sorted(found)}
 
 
+# ---------------------------------------------------------------- 근거 문장(quote) 기준 채점
+def squash(s: str) -> str:
+    """공백과 문장부호를 지운다. PDF 줄을 빈칸 없이 이어 붙여 띄어쓰기가 원문과 달라진 것을 맞춘다."""
+    return re.sub(r"[\s\.,·'\"‘’“”]", "", s)
+
+
+def chunks_by_page() -> dict:
+    """(book_id, page) → 그 쪽의 청크 목록. 색인이 없으면 PDF에서 청크를 다시 만든다 (모델 불필요)."""
+    if CHUNKS_PATH.exists():
+        chunks = json.loads(CHUNKS_PATH.read_text(encoding="utf-8"))
+    else:
+        from app.ingest import load_chunks
+        chunks = load_chunks()
+    by_page = {}
+    for c in chunks:
+        by_page.setdefault((c["book_id"], c["page"]), []).append(c)
+    return by_page
+
+
+def gold_chunk_groups(ans: dict, by_page: dict) -> list[set[str]]:
+    """근거 묶음마다 quote가 든 청크(정답 청크) ID 집합. 묶음 안의 quote 어느 하나라도 있으면 그 묶음을 확보한 것으로 본다."""
+    return [{c["chunk_id"] for ev in g for c in by_page.get((ev["book_id"], ev["page"]), [])
+             if squash(ev["quote"]) in squash(c["text"])}
+            for g in ans.get("evidence_groups", [])]
+
+
+def quote_score(run_row: dict, ans: dict, by_page: dict) -> dict:
+    """모델이 본 문맥 기준. hit: 정답 청크가 하나라도 있었나. group_recall: 근거 묶음 중 몇 개를 확보했나."""
+    groups = gold_chunk_groups(ans, by_page)
+    if not groups:
+        return {"hit": None, "group_recall": None, "note": "근거 묶음이 없어 해당 없음"}
+    seen = {c["chunk_id"] for c in run_row["contexts"]}
+    return {"hit": int(any(g & seen for g in groups)), "group_recall": sum(bool(g & seen) for g in groups) / len(groups),
+            "missing": [sorted(g) for g in groups if not g & seen]}
+
+
+def chunk_rank_metrics(ranked: dict, answers: dict, by_page: dict) -> dict:
+    """검색 순위 기준 청크 단위 지표. ranked = {질문 ID: [chunk_id, …]} (상위 10개, 순서대로)."""
+    ranks, recalls = [], []
+    for qid, ids in ranked.items():
+        groups = gold_chunk_groups(answers[qid], by_page)
+        if not groups:
+            continue
+        gold = set().union(*groups)
+        ranks.append(next((i for i, c in enumerate(ids, start=1) if c in gold), None))
+        recalls.append(sum(bool(g & set(ids)) for g in groups) / len(groups))
+    return {**{f"chunk_hit@{k}": round(mean(r is not None and r <= k for r in ranks), 3) for k in (1, 3, 10)},
+            "chunk_mrr": round(mean(1 / r if r else 0 for r in ranks), 3),
+            "group_recall@10": round(mean(recalls), 3), "n": len(ranks)}
+
+
+def failure_kind(q: dict, fact) -> str:
+    """정답 청크와 Judge 사실 점수로 실패가 어디서 났는지 나눈다 (강의 LLMOps 1-4 실패 분류)."""
+    if q["group_recall"] is None:
+        return "해당 없음"
+    if fact is None:  # 채점이 없거나 해당 없음이면 근거 확보만 적는다
+        return {0: "근거 없음", 1: "근거 확보"}.get(q["group_recall"], "근거 일부")
+    if q["group_recall"] == 0:
+        return "검색 · 문맥 실패" if fact != 1 else "근거 밖에서 맞힘"
+    if fact == 1:
+        return "성공" if q["group_recall"] == 1 else "일부 근거로 맞힘"
+    return "생성 실패" if q["group_recall"] == 1 else "근거 일부 누락"
+
+
 async def faithfulness(metric, run_row: dict) -> dict:
     """RAGAS Faithfulness. 서비스 오류면 "평가 불가", 되묻기만 해서 주장이 없으면 "해당 없음"."""
     if run_row["status"] == "error":
@@ -185,6 +257,7 @@ async def score_all(runs: list[dict], answers: dict) -> tuple[list[dict], dict]:
     judge_llm = ChatOpenAI(model=LLM_MODEL, timeout=60, max_retries=1).with_structured_output(JudgeOut, include_raw=True)
     ragas_client = AsyncOpenAI(timeout=60, max_retries=1, http_client=metered_async_http(ragas_meter))
     metric = Faithfulness(llm=llm_factory(LLM_MODEL, client=ragas_client))
+    by_page = chunks_by_page()
     sem = asyncio.Semaphore(4)
 
     async def one(row: dict) -> dict:
@@ -194,7 +267,8 @@ async def score_all(runs: list[dict], answers: dict) -> tuple[list[dict], dict]:
         print(f"  scored {row['mode']:<14} {row['id']} faith={f['state']}:{f['value']} judge={[j[k]['score'] for k in j]}")
         return {"id": row["id"], "mode": row["mode"], "request_id": row["request_id"],
                 "expected_action": ans["expected_action"], "status": row["status"],
-                "retrieval": retrieval_score(row, ans), "faithfulness": f, "judge": j}
+                "retrieval": retrieval_score(row, ans), "quote": quote_score(row, ans, by_page),
+                "faithfulness": f, "judge": j}
 
     scores = await asyncio.gather(*(one(r) for r in runs))
     return list(scores), {"judge": judge_meter.as_dict(), "ragas": ragas_meter.as_dict()}
@@ -217,11 +291,14 @@ def summarize(runs: list[dict], scores: list[dict], eval_usage: dict) -> dict:
         ok = [r for r in rs if r["status"] != "error"]
         used = [r["usage"] for r in rs if r.get("usage")]
         ret = [s["retrieval"] for s in ss if s["retrieval"]["hit"] is not None]
+        quo = [s["quote"] for s in ss if s.get("quote", {}).get("hit") is not None]
         m = {
             "questions": len(rs),
             "status": {st: sum(r["status"] == st for r in rs) for st in ("answered", "needs_clarification", "abstained", "error")},
             "hit_at_k": round(mean(x["hit"] for x in ret), 3), "recall_at_k": round(mean(x["recall"] for x in ret), 3),
             "retrieval_n": len(ret), "retrieval_na": len(ss) - len(ret),
+            "quote_hit": round(mean(x["hit"] for x in quo), 3) if quo else None,
+            "quote_group_recall": round(mean(x["group_recall"] for x in quo), 3) if quo else None,
             "faithfulness": rate([s["faithfulness"] for s in ss]),
             "ops": {
                 "ok_requests": len(ok),
@@ -255,6 +332,8 @@ def write_table(runs: list[dict], scores: list[dict], summary: dict) -> None:
     table = {
         "Hit@10": lambda m: f"{m['hit_at_k']:.3f} (n={m['retrieval_n']})",
         "Recall@10": lambda m: f"{m['recall_at_k']:.3f}",
+        "정답 청크 Hit": lambda m: fmt(m.get("quote_hit")),
+        "근거 묶음 Recall": lambda m: fmt(m.get("quote_group_recall")),
         "Faithfulness": lambda m: avg(m["faithfulness"]),
         "Judge 사실": lambda m: avg(m["judge_fact"]),
         "Judge 조건": lambda m: avg(m["judge_condition"]),
@@ -294,6 +373,59 @@ def score() -> None:
     print(json.dumps(summary, ensure_ascii=False, indent=1))
 
 
+def quote() -> None:
+    """모델 호출 없이 다시 채점한다: 저장된 답변의 문맥과 저장된 검색 순위를 정답 청크(quote) 기준으로 본다."""
+    runs = [json.loads(l) for l in RUNS.read_text(encoding="utf-8").splitlines()]
+    answers = {a["id"]: a for a in json.loads((EVAL_DIR / f"{SPLIT}.json").read_text(encoding="utf-8"))}
+    by_page = chunks_by_page()
+    facts = {(s["id"], s["mode"]): s["judge"]["fact"]["score"]
+             for s in map(json.loads, SCORES.read_text(encoding="utf-8").splitlines())} if SCORES.exists() else {}
+    rows = []
+    for r in runs:
+        q = quote_score(r, answers[r["id"]], by_page)
+        fact = facts.get((r["id"], r["mode"]))
+        rows.append({"id": r["id"], "mode": r["mode"], "status": r["status"], "fact": fact, "hit": q["hit"],
+                     "group_recall": q["group_recall"], "kind": failure_kind(q, fact), "missing": q.get("missing", [])})
+    out = {"split": SPLIT, "modes": {}, "rows": rows}
+    comp = OUT / "mode_comparison.json"  # compare_modes가 저장한 검색 순위 (development만)
+    saved = json.loads(comp.read_text(encoding="utf-8"))["per_question_search"] if SPLIT == "development" and comp.exists() else {}
+    for mode in MODES:
+        mine = [x for x in rows if x["mode"] == mode and x["hit"] is not None]
+        kinds = {}
+        for x in rows:
+            if x["mode"] == mode:
+                kinds[x["kind"]] = kinds.get(x["kind"], 0) + 1
+        out["modes"][mode] = {"context_chunk_hit": round(mean(x["hit"] for x in mine), 3),
+                              "context_group_recall": round(mean(x["group_recall"] for x in mine), 3),
+                              "n": len(mine), "kinds": kinds}
+        if saved:
+            out["modes"][mode]["search"] = chunk_rank_metrics({qid: v["ranked"][mode] for qid, v in saved.items()}, answers, by_page)
+    QUOTE_JSON.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    def row(name: str, values) -> str:
+        return f"| {name} | " + " | ".join(str(v) for v in values) + " |"
+    modes = out["modes"]
+    lines = [f"# 정답 청크(quote) 기준 채점 ({SPLIT})", "",
+             "정답 청크 = 정답 파일 quote가 든 청크 (공백 · 문장부호를 지우고 비교). 모델 호출 없이 저장된 결과만 다시 읽었다.", "",
+             row("지표", MODES), "|---|" + "---|" * len(MODES),
+             row("문맥에 정답 청크 (Hit)", [modes[m]["context_chunk_hit"] for m in MODES]),
+             row("문맥의 근거 묶음 Recall", [modes[m]["context_group_recall"] for m in MODES])]
+    if saved:
+        for k in ("chunk_hit@1", "chunk_hit@3", "chunk_mrr", "group_recall@10"):
+            lines.append(row(f"검색 순위 {k}", [modes[m]["search"][k] for m in MODES]))
+    kinds = sorted({k for m in MODES for k in modes[m]["kinds"]})
+    lines += ["", "## 실패 분류 (정답 청크 확보 × Judge 사실)", "", row("분류", MODES), "|---|" + "---|" * len(MODES)]
+    lines += [row(k, [modes[m]["kinds"].get(k, 0) for m in MODES]) for k in kinds]
+    lines += ["", "## 성공이 아닌 질문", "", "| 질문 | 방식 | 상태 | 사실 | 묶음 Recall | 분류 | 빠진 정답 청크 |", "|---|---|---|---|---|---|---|"]
+    for x in rows:
+        if x["kind"] not in ("성공", "해당 없음"):
+            gr = "–" if x["group_recall"] is None else f"{x['group_recall']:.2f}"
+            lines.append(f"| {x['id']} | {x['mode']} | {x['status']} | {x['fact']} | {gr} | {x['kind']} | "
+                         + ", ".join("/".join(g) for g in x["missing"]) + " |")
+    QUOTE_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(QUOTE_MD.read_text(encoding="utf-8"))
+
+
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
-    {"run": run, "score": score}[sys.argv[1]]()
+    {"run": run, "score": score, "quote": quote}[sys.argv[1]]()
