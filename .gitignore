@@ -16,3 +16,6 @@ index/
 # AI assistant tooling (not part of the project)
 .claude/
 .agents/
+
+# eval.live 이전 실행 결과 (▲▼ 비교용, 내 PC에만)
+eval/results/live_last_*.json

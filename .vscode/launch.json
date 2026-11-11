@@ -30,6 +30,30 @@
       "request": "launch",
       "module": "tests.check_core",
       "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "5. 평가 · 검색 지표 표 (eval.live, 서버를 끄고)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "eval.live",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "6. 평가 · 답변 모으기 run (서버를 켜고, 키 필요)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "eval.run_eval",
+      "args": ["run"],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "7. 평가 · 채점 score (키 필요)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "eval.run_eval",
+      "args": ["score"],
+      "cwd": "${workspaceFolder}"
     }
   ]
 }

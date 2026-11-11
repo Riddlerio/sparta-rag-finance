@@ -1,0 +1,53 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "평가 · 저장할 때마다 (빠르게)",
+      "detail": "naive · hybrid 검색 지표를 파일 저장마다 다시 재서 표로 보여 줌 (약 30초, 키 불필요)",
+      "type": "process",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["-X", "utf8", "-m", "eval.live", "--watch", "--modes", "naive,hybrid"],
+      "options": { "cwd": "${workspaceFolder}", "env": { "PYTHONIOENCODING": "utf-8" } },
+      "presentation": { "reveal": "always", "panel": "dedicated", "focus": false, "clear": false },
+      "runOptions": { "runOn": "folderOpen" },
+      "problemMatcher": []
+    },
+    {
+      "label": "평가 · 저장할 때마다 (리랭커 포함)",
+      "detail": "세 방식 모두 (약 5분, 리랭커가 CPU에서 질문당 약 3~5초)",
+      "type": "process",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["-X", "utf8", "-m", "eval.live", "--watch"],
+      "options": { "cwd": "${workspaceFolder}", "env": { "PYTHONIOENCODING": "utf-8" } },
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "평가 · 한 번 재기",
+      "type": "process",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["-X", "utf8", "-m", "eval.live"],
+      "options": { "cwd": "${workspaceFolder}", "env": { "PYTHONIOENCODING": "utf-8" } },
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "1. 색인 만들기",
+      "type": "process",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["-X", "utf8", "-m", "app.index"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "2. API 서버 켜기",
+      "detail": "감시 모드와 같이 켜지 마세요 (Qdrant 폴더는 한 프로그램만 열 수 있음)",
+      "type": "process",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["-X", "utf8", "-m", "uvicorn", "app.main:app", "--port", "8000"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}

@@ -13,7 +13,8 @@
 3. (모델 호출 없음) `python -m eval.run_eval quote` → quote_development.json · quote_development.md
    저장된 답변과 검색 순위를 정답 청크 기준으로 다시 채점하고, 실패를 검색 · 문맥 · 생성으로 나눈다.
 
-질문 묶음은 뒤에 붙여 바꾼다: `python -m eval.run_eval run additional` (기본은 development).
+질문 묶음은 뒤에 붙여 바꾼다: `python -m eval.run_eval run <묶음>` (기본은 development).
+추가 · 확장 검증 질문은 저장소에서 빼 C:\finance_archive에 보관했다. 쓰려면 data/evaluation/에 다시 넣는다.
 개발 질문으로 설정을 고르고, 다른 묶음(test)은 최종 구성으로 한 번만 돌려 기록한다 (강의 8-4).
 
 호출 한도는 미리 정해 두고 넘으면 멈춘다: 서비스 90회, Judge 90회, RAGAS 300회.

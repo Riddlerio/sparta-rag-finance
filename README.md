@@ -61,11 +61,10 @@
 ```bash
 git clone https://github.com/Riddlerio/sparta-rag-finance.git
 cd sparta-rag-finance
-uv venv --python 3.12 .venv
-uv pip install -r requirements.txt
+uv sync
 ```
 
-uv가 없으면 `python -m venv .venv`로 가상환경을 만든 뒤 `.venv/Scripts/pip install -r requirements.txt`(Windows)로 설치합니다. 첫 실행 때 Hugging Face에서 임베딩 모델과 리랭커를 내려받습니다(합계 약 2.5GB).
+`uv sync`가 `.venv`를 만들고 `uv.lock`에 고정된 버전 그대로 설치합니다. 패키지 목록은 `pyproject.toml`에 있고, 추가 · 삭제는 `uv add` · `uv remove`로 합니다. 첫 실행 때 Hugging Face에서 임베딩 모델과 리랭커를 내려받습니다(합계 약 2.5GB).
 
 ### 키 설정
 
@@ -179,14 +178,14 @@ app/
   static/index.html  챗봇 화면
 eval/
   run_eval.py        일반 평가 실행 · 채점 (RAGAS · LLM Judge · 운영 지표)
+  live.py            검색 지표를 터미널 표로 (코드를 저장할 때마다 다시 잼)
   compare_modes.py   검색 3방식 상세 비교
   security_eval.py   보안(프롬프트 인젝션) 비교
   llm_usage.py       채점 호출 수 · 토큰 집계
   results/           평가 결과 파일
 tests/check_core.py  모델 없이 도는 자가 점검
 data/                발제 자료 (PDF · 평가 질문)
-presentation/        발표 자료 (pptx · pdf)
-RULES.md             팀 규칙과 결정 기록
+pyproject.toml       필요한 패키지 목록 (uv.lock에 정확한 버전 고정)
 ```
 
 코드를 처음 읽는다면 `config.py → ingest.py → index.py → retrieve.py → chain.py → schemas.py → main.py` 순서를 추천합니다. 질문이 지나가는 순서와 같습니다.
@@ -200,7 +199,6 @@ RULES.md             팀 규칙과 결정 기록
 | `data/evaluation/development.json` | 개발 질문의 참고 답변 · 근거 · 기대 행동 | **채점에만** 사용 |
 | `data/evaluation/security_questions.json` | 보안 질문 2개 (질문만) | 보안 비교 |
 | `data/evaluation/security_tasks.json` | 공격 문장 · 금지 주장 · 참고 답변 | **채점에만** 사용 |
-| `data/evaluation/additional*.json`, `expansion_validation*.json` | 추가 · 확장 검증 질문 | 이번 평가에는 쓰지 않음 |
 
 정답 파일(`development.json`, `security_tasks.json`)은 검색 질의 · 필터 · 색인 · 생성 입력에 넣지 않습니다. 평가 스크립트는 답변을 모두 저장한 뒤 채점 단계에서 처음 정답 파일을 엽니다.
 
@@ -227,6 +225,7 @@ RULES.md             팀 규칙과 결정 기록
 |---|---|---|---|
 | 일반 평가 실행 | `python -m eval.run_eval run` | 켜기 | `runs_development.jsonl` |
 | 채점 | `python -m eval.run_eval score` | 상관없음 | `scores_development.jsonl`, `summary_development.json`, `comparison_development.md` |
+| 검색 지표 표 (키 불필요) | `python -m eval.live` (저장할 때마다: `--watch`) | 끄기 | 터미널 표, 이전 실행과 차이 ▲▼ |
 | 검색 3방식 상세 비교 | `python -m eval.compare_modes` | 끄기 | `mode_comparison.md`, `mode_comparison.json` |
 | 질문 하나를 세 방식으로 | `python -m eval.compare_modes show "질문"` | 끄기 | 화면 출력 |
 | 보안 비교 | `python -m eval.security_eval hybrid_rerank` | 켜기 | `security_hybrid_rerank.json` |
@@ -278,7 +277,7 @@ RULES.md             팀 규칙과 결정 기록
 
 ## 9. 남은 한계
 
-- **표본이 작습니다.** 개발 질문 30개를 한 번 실행했습니다. 1문항 차이가 약 0.033~0.036이라 Hit@10 같은 작은 차이는 같은 수준으로 봅니다. 추가 · 확장 검증 질문으로는 아직 돌리지 않았습니다.
+- **표본이 작습니다.** 개발 질문 30개를 한 번 실행했습니다. 1문항 차이가 약 0.033~0.036이라 Hit@10 같은 작은 차이는 같은 수준으로 봅니다. 추가 · 확장 검증 질문으로는 아직 돌리지 않았습니다(이 질문 파일들은 저장소에서 빼 두었습니다).
 - **보류가 기대보다 많습니다.** 답해야 할 26개 중 최종 구성도 5개를 보류했습니다(F-DEV-24는 지나치게 신중했고, F-DEV-26은 근거가 문맥에 있었는데도 놓친 생성 쪽 문제).
 - **RAGAS 평가 불가 3건.** 채점 LLM의 출력 길이 제한(max_tokens)으로 방식마다 1건씩 채점하지 못했습니다. 0점으로 바꾸지 않고 평가 불가로 남겼습니다.
 - **Judge가 엄격한 경우가 있습니다.** F-DEV-03 naive 답변은 원문과 대조하면 맞는 내용인데 사실 0을 받았습니다. 자동 점수는 그대로 두고 사람 의견을 함께 남겼습니다.

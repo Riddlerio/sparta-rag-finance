@@ -1,0 +1,38 @@
+[project]
+name = "sparta-rag-finance"
+version = "0.1.0"
+description = "금융 PDF 15개에서 근거를 찾아 답하는 RAG 사내 챗봇"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+# 평가 수치를 잰 환경과 같도록 버전을 고정한다. 정확한 하위 패키지 버전은 uv.lock에 있다.
+dependencies = [
+    # 웹 API
+    "fastapi==0.162.2",
+    "uvicorn==0.54.0",
+    # PDF 글 추출
+    "pypdf==7.0.0",
+    # 임베딩(E5) · 리랭커(cross-encoder)
+    "sentence-transformers==6.2.0",
+    # 벡터 저장 (로컬 폴더 모드)
+    "qdrant-client==1.20.0",
+    # 키워드 검색: BM25 + 한국어 형태소 분석
+    "rank-bm25==0.2.2",
+    "kiwipiepy==0.24.1",
+    # 체인 (gpt-6-luna를 OpenAI API로 호출)
+    "langchain-core==1.7.6",
+    "langchain-openai==1.7.4",
+    # 실행 기록
+    "langfuse==5.2.0",
+    # .env 읽기
+    "python-dotenv==1.2.4",
+    # 토큰 수 어림 (o200k)
+    "tiktoken==0.14.0",
+    # 평가: RAGAS 0.4.3은 langchain-community 0.4와 맞지 않아 0.3대로 고정
+    "ragas==0.4.3",
+    "langchain-community==0.3.31",
+    # 평가 결과를 터미널 표로 (eval.live)
+    "rich==14.3.4",
+]
+
+[tool.uv]
+package = false   # 설치할 라이브러리가 아니라 실행하는 앱이다
